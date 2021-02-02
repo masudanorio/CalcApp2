@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         var total = 0.0f
         val mySnackbar = Snackbar.make(v, "数字を入力してからボタンを押してください。",Snackbar.LENGTH_SHORT)
+        val intent = Intent(this, SecondActivity::class.java)
 
 
     try {
@@ -36,17 +37,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.button2_id -> {total = editText1.text.toString().toFloat() - editText2.text.toString().toFloat()}
             R.id.button3_id -> {total = editText1.text.toString().toFloat() * editText2.text.toString().toFloat()}
             R.id.button4_id -> {total = editText1.text.toString().toFloat() / editText2.text.toString().toFloat()}
+
         }
+
+        intent.putExtra("VALUE1", total)
+        startActivity(intent)
+
     }catch (e : NumberFormatException){
 
         mySnackbar.show()
     }
 
 
-        val intent = Intent(this, SecondActivity::class.java)
-        intent.putExtra("VALUE1", total)
 
-        startActivity(intent)
     }
 }
 
